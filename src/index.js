@@ -115,8 +115,14 @@ console.log("\u6587\u5B57\u5217\u30B9\u30BF\u30C3\u30AF\u306E\u5185\u5BB9:");
 while (!stringStack.isEmpty()) {
     console.log("  ".concat(stringStack.pop()));
 }
+// ES5互換の書き方
 function findById(items, id) {
-    return items.find(function (item) { return item.id === id; });
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].id === id) {
+            return items[i];
+        }
+    }
+    return undefined;
 }
 // 2. キーを指定してオブジェクトの値を取得する関数
 function getProperty(obj, key) {
