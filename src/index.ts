@@ -175,11 +175,17 @@ interface Identifiable {
   id: number;
 }
 
+// ES5互換の書き方
 function findById<T extends Identifiable>(
   items: T[],
   id: number
 ): T | undefined {
-  return items.find((item) => item.id === id);
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].id === id) {
+      return items[i];
+    }
+  }
+  return undefined;
 }
 
 // 2. キーを指定してオブジェクトの値を取得する関数
